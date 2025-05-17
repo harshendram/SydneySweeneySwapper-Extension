@@ -4,7 +4,7 @@
 ## 🎥 Demo Video
 
 
-👉 [Click here to watch the demo video](https://github.com/harshendram/SydneySweeneySwapper-Extension/blob/main/swappervideo%20(1).mp4)
+👉 [Click here to watch the demo video](https://www.youtube.com/watch?v=3nd_F3iiKXc)
 
 
 ---
