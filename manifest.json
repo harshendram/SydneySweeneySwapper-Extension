@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Lmao",
+  "version": "1.0",
+  "description": "",
+  "author": "Harshendram",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://twitter.com/*",
+    "*://x.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://twitter.com/*",
+        "*://x.com/*"
+      ],
+      "js": ["dist/mainscript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["models/*", "target.webp", "mao1.jpg", "mao2.jpeg", "mao3.jpeg"],
+      "matches": [
+        "*://twitter.com/*",
+        "*://x.com/*"
+      ]
+    }
+  ]
+}
