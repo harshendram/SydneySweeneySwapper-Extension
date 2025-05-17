@@ -1,6 +1,11 @@
 
 
 ---
+## 🎥 Demo Video
+
+*A short video demonstration will be embedded here soon to showcase the extension in action.*
+
+---
 
 ````markdown
 # Twitter/X Face Swap Extension 😄
@@ -57,12 +62,6 @@ npm run build
 
 ---
 
-## 🎥 Demo Video
-
-*A short video demonstration will be embedded here soon to showcase the extension in action.*
-
----
-
 ## ⚠️ Disclaimer
 
 This Chrome extension is created **purely for fun and educational purposes**.
@@ -75,5 +74,4 @@ Made with 🤍 by **Harshendram**
 
 ```
 
----
-```
+
