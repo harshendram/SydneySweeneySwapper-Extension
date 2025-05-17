@@ -56,5 +56,4 @@ This extension is created **purely for fun and entertainment**. It has **no mali
 
 Made with 🤍 by Harshendram
 
-````
 
