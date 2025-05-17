@@ -3,7 +3,7 @@
 ---
 ## 🎥 Demo Video
 
-*A short video demonstration will be embedded here soon to showcase the extension in action.*
+
 
 ---
 
@@ -72,6 +72,5 @@ Use it responsibly and ethically.
 
 Made with 🤍 by **Harshendram**
 
-```
 
 
