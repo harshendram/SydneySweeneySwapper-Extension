@@ -3,11 +3,10 @@
 ---
 ## 🎥 Demo Video
 
+[![Watch the demo](https://img.youtube.com/vi/3nd_F3iiKXc/0.jpg)](https://www.youtube.com/watch?v=3nd_F3iiKXc)
 
-👉 [Click here to watch the demo video](https://www.youtube.com/watch?v=3nd_F3iiKXc)
+> Click the thumbnail above to watch the demo on YouTube.
 
-
----
 
 ````markdown
 # Twitter/X Face Swap Extension 😄
