@@ -1,32 +1,24 @@
 {
-  "manifest_version": 3,
-  "name": "SydneySweeneySwapper",
-  "version": "1.0",
-  "description": "",
-  "author": "Harshendram",
-  "permissions": [
-    "activeTab"
-  ],
-  "host_permissions": [
-    "*://twitter.com/*",
-    "*://x.com/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "*://twitter.com/*",
-        "*://x.com/*"
-      ],
-      "js": ["dist/mainscript.js"]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["models/*", "target.webp", "alakh1.jpg", "alakh2.jpg", "alakh3.jpg","alakh4.jpg","alakh5.jpg"],
-      "matches": [
-        "*://twitter.com/*",
-        "*://x.com/*"
-      ]
-    }
-  ]
-}
+    "manifest_version": 3,
+    "name": "Lmao",
+    "version": "1.0",
+    "description": "",
+    "permissions": [
+      "activeTab",
+      "<all_urls>"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["*://twitter.com/*"],
+        "js": ["dist/mainscript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["models/*", "target.webp", "mao1.jpg","mao2.jpeg","mao3.jpeg"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "author": "sahir2k"
+  }
+  

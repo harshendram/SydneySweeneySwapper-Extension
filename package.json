@@ -1,18 +1,15 @@
 {
   "dependencies": {
-    "face-api.js": "^0.22.2",
-    "node-fetch": "^2.6.9"
+    "face-api.js": "^0.22.2"
   },
   "scripts": {
-  "preinstall": "npx npm-force-resolutions",
-  "build": "parcel build mainscript.js --public-url ./",
-  "watch": "parcel watch mainscript.js --public-url ./"
-}
-,
+    "build": "parcel build mainscript.js --public-url ./",
+    "watch": "parcel watch mainscript.js --public-url ./"
+  },
   "devDependencies": {
     "buffer": "^6.0.3",
-    "npm-force-resolutions": "^0.0.10",
-    "parcel": "^2.15.1",
+    "parcel": "^2.12.0",
     "process": "^0.11.10"
   }
+  
 }

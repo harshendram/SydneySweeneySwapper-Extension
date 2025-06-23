@@ -1,63 +1,59 @@
-import * as faceapi from "face-api.js";
+import * as faceapi from 'face-api.js';
 
-let modelsLoaded = false;
-let targetDescriptor = null;
+let modelsLoaded = false; 
+let targetDescriptor = null; 
+
 
 const loadModels = async () => {
-  const modelUrl = chrome.runtime.getURL("models/");
+  const modelUrl = chrome.runtime.getURL('models/');
   await faceapi.nets.ssdMobilenetv1.loadFromUri(modelUrl);
   await faceapi.nets.faceLandmark68Net.loadFromUri(modelUrl);
   await faceapi.nets.faceRecognitionNet.loadFromUri(modelUrl);
   modelsLoaded = true;
-  console.log("Models loaded successfully");
+  console.log('Models loaded successfully');
 };
 
+
 const loadTargetDescriptor = async () => {
-  const img = await faceapi.fetchImage(chrome.runtime.getURL("target.webp"));
-  const detection = await faceapi
-    .detectSingleFace(img)
-    .withFaceLandmarks()
-    .withFaceDescriptor();
+  const img = await faceapi.fetchImage(chrome.runtime.getURL('target.webp'));
+  const detection = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
   if (!detection) {
-    console.error("No face detected in the target image.");
+    console.error('No face detected in the target image.');
     return null;
   }
-  return new faceapi.LabeledFaceDescriptors("Target", [detection.descriptor]);
+  return new faceapi.LabeledFaceDescriptors('Target', [detection.descriptor]);
 };
 
 (async () => {
   await loadModels();
   targetDescriptor = await loadTargetDescriptor();
   if (!targetDescriptor) {
-    console.error("Failed to load target descriptor.");
+    console.error('Failed to load target descriptor.');
     return;
   }
 })();
 
 const processImage = async (img) => {
   if (img.naturalHeight <= 50 || img.naturalWidth <= 50) {
-    return;
+    return; 
   }
-  console.log("Processing image:", img.src);
+  console.log('Processing image:', img.src);
   const targetDetected = await isTarget(img.src);
-  console.log("Target detected:", targetDetected);
+  console.log('Target detected:', targetDetected);
 
-  if (targetDetected) {
-    const overlayImg = document.createElement("img");
+  if(targetDetected){
+    const overlayImg = document.createElement('img');
 
-    let alakh1 = chrome.runtime.getURL("alakh1.jpg");
-    let alakh2 = chrome.runtime.getURL("alakh2.jpg");
-    let alakh3 = chrome.runtime.getURL("alakh3.jpg");
-    let alakh4 = chrome.runtime.getURL("alakh4.jpg");
-    let alakh5 = chrome.runtime.getURL("alakh5.jpg");
+    let mao1 = chrome.runtime.getURL('mao1.jpg');
+    let mao2 = chrome.runtime.getURL('mao2.jpeg');
+    let mao3 = chrome.runtime.getURL('mao3.jpeg');
 
-    let alakhs = [alakh1, alakh2, alakh3, alakh4, alakh5];
+    let maos = [mao1, mao2, mao3];
 
-    const randomIndex = Math.floor(Math.random() * 5);
-    const randomalakh = alakhs[randomIndex];
-    overlayImg.src = randomalakh;
-    overlayImg.style.position = "absolute";
-    overlayImg.classList.add("overlay-applied");
+    const randomMao = maos[Math.floor(Math.random() * maos.length)];
+    overlayImg.src = randomMao
+    overlayImg.style.position = 'absolute';
+    overlayImg.classList.add('overlay-applied');
 
     const rect = img.getBoundingClientRect();
     overlayImg.style.left = `${rect.left + window.scrollX}px`;
@@ -66,38 +62,33 @@ const processImage = async (img) => {
     overlayImg.style.height = `${rect.height}px`;
 
     document.body.appendChild(overlayImg);
-    img.style.opacity = "0"; // Hide the original img
-    img.classList.add("overlay-applied");
-  }
+    img.style.opacity = '0'; // Hide the original img
+    img.classList.add('overlay-applied');
+
+    }
 };
 
-const imageObserver = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(async (entry) => {
-      if (entry.isIntersecting) {
-        observer.unobserve(entry.target);
-        await processImage(entry.target);
-      }
-    });
-  },
-  {
-    rootMargin: "0px",
-    threshold: 0.1,
-  }
-);
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(async (entry) => {
+    if (entry.isIntersecting) {
+      observer.unobserve(entry.target);
+      await processImage(entry.target);
+    }
+  });
+}, {
+  rootMargin: '0px',
+  threshold: 0.1
+});
 
 const setupObservers = () => {
-  document
-    .querySelectorAll('div[data-testid="tweetPhoto"] img')
-    .forEach(async (img) => {
-      imageObserver.observe(img);
-    });
+  document.querySelectorAll('div[data-testid="tweetPhoto"] img').forEach(async img => {    imageObserver.observe(img);
+  });
 
   // Observe new images added to the DOM
-  const mutationObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.tagName === "IMG") {
+  const mutationObserver = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      mutation.addedNodes.forEach(node => {
+        if (node.tagName === 'IMG') {
           imageObserver.observe(node);
         }
       });
@@ -115,18 +106,13 @@ const intervalId = setInterval(() => {
 }, 100); // Check every 100ms
 
 const isTarget = async (src) => {
-  console.log("isTarget:");
+  console.log('isTarget:');
   const img = await faceapi.fetchImage(src);
-  const detections = await faceapi
-    .detectAllFaces(img, new faceapi.SsdMobilenetv1Options())
-    .withFaceLandmarks()
-    .withFaceDescriptors();
+  const detections = await faceapi.detectAllFaces(img, new faceapi.SsdMobilenetv1Options()).withFaceLandmarks().withFaceDescriptors();
   if (!detections.length) {
     return false;
   }
   const faceMatcher = new faceapi.FaceMatcher(targetDescriptor, 0.6);
-  const bestMatch = detections.map((d) =>
-    faceMatcher.findBestMatch(d.descriptor)
-  );
-  return bestMatch.some((result) => result.label === "Target");
+  const bestMatch = detections.map(d => faceMatcher.findBestMatch(d.descriptor));
+  return bestMatch.some(result => result.label === 'Target');
 };
