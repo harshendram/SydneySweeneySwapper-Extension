@@ -10,7 +10,7 @@
 
 Check out this short demo video to see how the extension works:
 
-[![SydneySweeney Face Swapper Demo](https://img.shields.io/badge/Watch-Demo%20Video-red?style=for-the-badge&logo=youtube)](https://youtu.be/B01fBA2pOTA)
+[![SydneySweeney Face Swapper Demo](https://img.shields.io/badge/Watch-Demo%20Video-red?style=for-the-badge&logo=youtube)](https://youtu.be/_xlBwqwOips)
 
 _Note: Replace "your-video-id" in the URL with your actual YouTube video ID when you upload your demo._
 
